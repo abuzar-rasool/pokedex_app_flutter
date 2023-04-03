@@ -36,11 +36,14 @@ class _AnimatedLogoState extends State<AnimatedLogo> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    return widget.isAnimating
-        ? RotationTransition(
-            turns: CurveTween(curve: Curves.easeInOutCubic).animate(_controller),
-            child: Image.asset('assets/images/logo.png', width: widget.width, height: widget.height),
-          )
-        : Image.asset('assets/images/logo.png', width: widget.width, height: widget.height);
+    return Hero(
+      tag: 'logo',
+      child: widget.isAnimating
+          ? RotationTransition(
+              turns: CurveTween(curve: Curves.easeInOutCubic).animate(_controller),
+              child: Image.asset('assets/images/logo.png', width: widget.width, height: widget.height),
+            )
+          : Image.asset('assets/images/logo.png', width: widget.width, height: widget.height),
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/home/home_screen.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/login/login_screen.dart';
+import 'package:pokedex_app_flutter/app/presentation/screens/register/register_screen.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/splash/splash_screen.dart';
 import 'package:pokedex_app_flutter/core/app_navigator/fade_page_route.dart';
 
@@ -28,13 +29,15 @@ class AppNavigator {
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case _Paths.splash:
-        return FadePageRoute(page: const SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case _Paths.home:
-        return FadePageRoute(page: const HomeScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       case _Paths.login:
-        return FadePageRoute(page:  LoginScreen());
+        return MaterialPageRoute(builder: (_) => LoginScreen());
+      case _Paths.register:
+        return MaterialPageRoute(builder: (_) => RegisterScreen());
       default:
-        return FadePageRoute(page: const SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
     }
   }
 

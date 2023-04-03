@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PokedexTheme {
   static ColorScheme colorScheme = const ColorScheme.light(
-    primary: Colors.red,
+    primary: Color(0xffee1a24),
     secondary: Colors.white,
     tertiary: Color.fromARGB(255, 32, 31, 31),
     onPrimary: Colors.white,

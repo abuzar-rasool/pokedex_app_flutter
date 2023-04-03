@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:pokedex_app_flutter/app/cubits/authentication/authentication_cubit.dart';
+import 'package:pokedex_app_flutter/app/entities/authentication_status.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/home/home_screen.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/login/login_screen.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/register/register_screen.dart';
@@ -8,9 +12,9 @@ import 'package:pokedex_app_flutter/core/app_navigator/fade_page_route.dart';
 enum Routes { splash, home, login, register }
 
 class _Paths {
-  static const String splash = '/spalsh';
+  static const String splash = '/';
   static const String home = '/home';
-  static const String login = '/';
+  static const String login = '/login';
   static const String register = '/register';
 
   static const Map<Routes, String> _pathMap = {
@@ -48,4 +52,17 @@ class AppNavigator {
   static void pop() => state?.pop();
 
   static NavigatorState? get state => navigatorKey.currentState;
+
+  static navigate(AuthenticationStatus authenticationStatus){
+    switch (authenticationStatus) {
+      case AuthenticationStatus.authenticated:
+        replaceWith(Routes.home);
+        break;
+      case AuthenticationStatus.unauthenticated:
+        replaceWith(Routes.login);
+        break;
+      default:
+        replaceWith(Routes.splash);
+    }
+  }
 }

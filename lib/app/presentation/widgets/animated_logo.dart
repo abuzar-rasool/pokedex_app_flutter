@@ -24,7 +24,7 @@ class _AnimatedLogoState extends State<AnimatedLogo> with SingleTickerProviderSt
     _controller = AnimationController(
       animationBehavior: AnimationBehavior.preserve,
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 500),
     )..repeat();
   }
 

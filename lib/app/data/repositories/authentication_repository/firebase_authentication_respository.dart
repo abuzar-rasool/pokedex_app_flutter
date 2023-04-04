@@ -5,12 +5,16 @@ import 'package:pokedex_app_flutter/app/data/repositories/authentication_reposit
 import 'package:pokedex_app_flutter/app/entities/authentication_status.dart';
 import 'package:pokedex_app_flutter/app/entities/user.dart';
 import 'package:pokedex_app_flutter/core/faliure.dart';
+import 'package:pokedex_app_flutter/services/local_storage_service.dart';
 
 class FirebaseAuthRepository implements AuthenticationRepository {
   final firebase.FirebaseAuth _auth;
   final _authenticationStreamController = StreamController<AuthenticationStatus>();
+  final LocalStorageService _localStorageService;
 
-  FirebaseAuthRepository() : _auth = firebase.FirebaseAuth.instance {
+  FirebaseAuthRepository({
+    required LocalStorageService localStorageService
+  }) : _auth = firebase.FirebaseAuth.instance, _localStorageService = localStorageService {
     _auth.authStateChanges().listen((user) {
       if (user != null) {
         _authenticationStreamController.add(AuthenticationStatus.authenticated);
@@ -35,8 +39,8 @@ class FirebaseAuthRepository implements AuthenticationRepository {
   Future<void> login(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } on firebase.FirebaseAuthException catch (e){
-      throw Failure(message:e.message!);
+    } on firebase.FirebaseAuthException catch (e) {
+      throw Failure(message: e.message!);
     } on Exception {
       throw Failure();
     }
@@ -44,6 +48,7 @@ class FirebaseAuthRepository implements AuthenticationRepository {
 
   @override
   Future<void> logout() async {
+    await _localStorageService.clear();
     await _auth.signOut();
   }
 
@@ -51,8 +56,8 @@ class FirebaseAuthRepository implements AuthenticationRepository {
   Future<void> register(String email, String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
-    } on firebase.FirebaseAuthException catch (e){
-      throw Failure(message:e.message!);
+    } on firebase.FirebaseAuthException catch (e) {
+      throw Failure(message: e.message!);
     } on Exception {
       throw Failure();
     }

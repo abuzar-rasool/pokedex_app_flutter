@@ -36,8 +36,12 @@ class _GlobalRepositoryInjector extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<AuthenticationRepository>(create: (context) => FirebaseAuthRepository()),
-        RepositoryProvider<PokemonRepository>(create: (context) => PokemonRepositoryImpl( httpService: context.read<HttpService>(), localStorageService: context.read<LocalStorageService>())),
+        RepositoryProvider<AuthenticationRepository>(
+            create: (context) => FirebaseAuthRepository(
+                  localStorageService: context.read<LocalStorageService>(),
+                )),
+        RepositoryProvider<PokemonRepository>(
+            create: (context) => PokemonRepositoryImpl(httpService: context.read<HttpService>(), localStorageService: context.read<LocalStorageService>())),
       ],
       child: child,
     );
@@ -59,7 +63,6 @@ class _GlobalBlocInjector extends StatelessWidget {
     );
   }
 }
-
 
 class _GlobalServiceInjector extends StatelessWidget {
   final Widget child;

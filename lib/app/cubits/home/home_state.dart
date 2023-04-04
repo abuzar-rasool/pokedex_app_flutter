@@ -26,7 +26,7 @@ class HomeState extends Equatable {
 
   @override
   String toString() {
-    return '''PostState { status: $status, hasReachedMax: $hasReachedMax, posts: ${pokemons.length} }''';
+    return '''HomeState { status: $status, hasReachedMax: $hasReachedMax, posts: ${pokemons.length} }''';
   }
 
   @override

@@ -1,5 +1,5 @@
 # pokedex_app_flutter
-[![Codemagic - Deployed](https://img.shields.io/badge/Heroku-Deployed-2ea44f)](https://pokedex_app.codemagic.app)
+[![Codemagic - Deployed](https://img.shields.io/badge/Codemagic-Deployed-2ea44f)](https://pokedex_app.codemagic.app)
 
 [![Live Web Preview](https://img.shields.io/badge/Live_Preview-2ea44f?style=for-the-badge)](https://pokedex_app.codemagic.app)
 

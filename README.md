@@ -27,6 +27,26 @@ Tools • Dart 2.19.3 • DevTools 2.20.1
 ## Application Preview
 
 <div style="display:flex; justify-content:center">
-  <img src="https://github.com/abuzar-rasool/pokedex_app_flutter/blob/main/gifs/favourite.gif" width="300" />
-  <img src="https://github.com/abuzar-rasool/pokedex_app_flutter/blob/main/gifs/login.gif" width="300" />
+   </figure>
+    <img src="https://github.com/abuzar-rasool/pokedex_app_flutter/blob/main/gifs/login.gif" width="300" />
+    <figcaption>Firebase Auth Login and validation/figcaption>
+  </figure>
+  </figure>
+    <img src="https://github.com/abuzar-rasool/pokedex_app_flutter/blob/main/gifs/register.gif" width="300" />
+    <figcaption>Register and validation</figcaption>
+  </figure>
+  </figure>
+    <img src="https://github.com/abuzar-rasool/pokedex_app_flutter/blob/main/gifs/session.gif" width="300" />
+    <figcaption>Session presistance</figcaption>
+  </figure>
+</div>
+<div style="display:flex; justify-content:center">
+   </figure>
+    <img src="https://github.com/abuzar-rasool/pokedex_app_flutter/blob/main/gifs/favourite.gif" width="300" />
+    <figcaption>Favourite presistance/<figcaption>
+  </figure>
+  </figure>
+    <img src="https://github.com/abuzar-rasool/pokedex_app_flutter/blob/main/gifs/pagination.gif" width="300" />
+    <figcaption>Paginated pokemon list</figcaption>
+  </figure>
 </div>

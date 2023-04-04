@@ -12,7 +12,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return Injector(
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Pokedex App',
+        debugShowCheckedModeBanner: false,
         navigatorKey: AppNavigator.navigatorKey,
         onGenerateRoute: AppNavigator.onGenerateRoute,
         theme: PokedexTheme.theme,

@@ -42,8 +42,6 @@ class PokemonRepositoryImpl implements PokemonRepository {
   @override
   Future<void> getPaginatedPokemons(String userId) async {
     if (!hasReachedMax) {
-      await _getLikedPokemons(userId);
-      log('Requesting pokemons from ');
       try {
         PokedexResponseModel responseModel = await _requestPokemons(_previousResponseModel?.next ?? kPokedexUrl);
         _previousResponseModel = responseModel;
@@ -54,8 +52,8 @@ class PokemonRepositoryImpl implements PokemonRepository {
       }
     }
   }
-
-  Future<void> _getLikedPokemons(String userId) async {
+  @override
+  Future<void> getLikedPokemons(String userId) async {
     try {
       List<String> likedPokemonsString = await _localStorageService.getStringList(userId);
       _likedPokemons.clear();
@@ -77,4 +75,7 @@ class PokemonRepositoryImpl implements PokemonRepository {
 
   @override
   bool get hasReachedMax => _previousResponseModel != null && _previousResponseModel!.next == null;
+
+  @override
+  List<Pokemon> get likedPokemons => _likedPokemons.map((e) => Pokemon(name: e, isLiked: true)).toList();
 }

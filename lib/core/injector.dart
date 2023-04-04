@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex_app_flutter/app/cubits/authentication/authentication_cubit.dart';
 import 'package:pokedex_app_flutter/app/data/repositories/authentication_repository/authentication_repository.dart';
 import 'package:pokedex_app_flutter/app/data/repositories/authentication_repository/firebase_authentication_respository.dart';
+import 'package:pokedex_app_flutter/app/data/repositories/pokemon_repository/pokemon_repository.dart';
+import 'package:pokedex_app_flutter/app/data/repositories/pokemon_repository/pokemon_repository_impl.dart';
 import 'package:pokedex_app_flutter/services/http_service.dart';
 import 'package:pokedex_app_flutter/services/local_storage_service.dart';
 import 'package:pokedex_app_flutter/services/snackbar_service.dart';
@@ -35,6 +37,7 @@ class _GlobalRepositoryInjector extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<AuthenticationRepository>(create: (context) => FirebaseAuthRepository()),
+        RepositoryProvider<PokemonRepository>(create: (context) => PokemonRepositoryImpl( httpService: context.read<HttpService>(), localStorageService: context.read<LocalStorageService>())),
       ],
       child: child,
     );

@@ -1,6 +1,5 @@
 part of 'home_cubit.dart';
 
-enum HomeStatus { initial, success, failure }
 
 class HomeState extends Equatable {
   const HomeState({
@@ -31,5 +30,5 @@ class HomeState extends Equatable {
   }
 
   @override
-  List<Object> get props => [status, pokemons.length, hasReachedMax];
+  List<Object> get props => [status, pokemons, hasReachedMax];
 }

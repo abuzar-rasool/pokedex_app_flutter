@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex_app_flutter/app/data/repositories/authentication_repository/authentication_repository.dart';
 import 'package:pokedex_app_flutter/app/data/repositories/pokemon_repository/pokemon_repository.dart';
+import 'package:pokedex_app_flutter/app/entities/home_status.dart';
 import 'package:pokedex_app_flutter/app/entities/pokemon.dart';
 import 'package:pokedex_app_flutter/core/faliure.dart';
 
@@ -22,6 +23,7 @@ class HomeCubit extends Cubit<HomeState> {
     if (state.hasReachedMax) return;
     try {
       log('Requesting pokemons from ');
+      await _pokemonRepository.getLikedPokemons(_authenticationRepository.getLoggedInUser!.id);
       await _pokemonRepository.getPaginatedPokemons(_authenticationRepository.getLoggedInUser!.id);
       emit(state.copyWith(status: HomeStatus.success, pokemons: [..._pokemonRepository.pokemons], hasReachedMax: _pokemonRepository.hasReachedMax));
     } on Failure catch (_) {
@@ -36,5 +38,9 @@ class HomeCubit extends Cubit<HomeState> {
     } on Failure catch (_) {
       emit(state.copyWith(status: HomeStatus.failure));
     }
+  }
+
+  Future<void> logout() async {
+    await _authenticationRepository.logout();
   }
 }

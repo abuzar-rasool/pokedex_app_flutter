@@ -5,31 +5,33 @@ import 'package:like_button/like_button.dart';
 import 'package:pokedex_app_flutter/app/entities/pokemon.dart';
 import 'package:pokedex_app_flutter/app/presentation/widgets/animated_logo.dart';
 
-class HomeScreenLoadedView extends StatefulWidget {
+class PokemonListView extends StatefulWidget {
   final List<Pokemon> pokemons;
-  final FutureOr<void> Function(Pokemon) onLike;
-  final FutureOr<void> Function() onPaginate;
+  final FutureOr<void> Function(Pokemon)? onLike;
+  final FutureOr<void> Function()? onPaginate;
   final bool hasReachedMax;
 
-  const HomeScreenLoadedView({
+  const PokemonListView({
     Key? key,
     required this.pokemons,
-    required this.onPaginate,
+    this.onPaginate,
     required this.hasReachedMax,
-    required this.onLike,
+    this.onLike,
   }) : super(key: key);
 
   @override
-  State<HomeScreenLoadedView> createState() => _HomeScreenLoadedViewState();
+  State<PokemonListView> createState() => _PokemonListViewState();
 }
 
-class _HomeScreenLoadedViewState extends State<HomeScreenLoadedView> {
+class _PokemonListViewState extends State<PokemonListView> {
   final _scrollController = ScrollController();
   bool paginating = false;
 
   @override
   void initState() {
-    _scrollController.addListener(_onScroll);
+    if (widget.onPaginate != null) {
+      _scrollController.addListener(_onScroll);
+    }
     super.initState();
   }
 
@@ -53,7 +55,7 @@ class _HomeScreenLoadedViewState extends State<HomeScreenLoadedView> {
         }
         return PokemonListTile(
           pokemon: widget.pokemons[index],
-          onLike: () => widget.onLike(widget.pokemons[index]),
+          onLike: widget.onLike == null ? null : () => widget.onLike?.call(widget.pokemons[index]),
         );
       },
     );
@@ -70,9 +72,8 @@ class _HomeScreenLoadedViewState extends State<HomeScreenLoadedView> {
   void _onScroll() async {
     if (_isBottom && !paginating) {
       paginating = true;
-      await widget.onPaginate();
+      await widget.onPaginate?.call();
       paginating = false;
-      setState(() {});
     }
   }
 
@@ -84,39 +85,41 @@ class _HomeScreenLoadedViewState extends State<HomeScreenLoadedView> {
 
 class PokemonListTile extends StatelessWidget {
   final Pokemon pokemon;
-  final FutureOr<void> Function() onLike;
+  final FutureOr<void> Function()? onLike;
   const PokemonListTile({
     super.key,
     required this.pokemon,
-    required this.onLike,
+    this.onLike,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(pokemon.name[0].toUpperCase() + pokemon.name.substring(1)),
-      trailing: SizedBox(
-        width: 50,
-        child: LikeButton(
-          likeCount: null,
-          isLiked: pokemon.isLiked,
-          circleColor: CircleColor(start: Theme.of(context).colorScheme.primary, end: Theme.of(context).colorScheme.primary),
-          bubblesColor: BubblesColor(
-            dotPrimaryColor: Theme.of(context).colorScheme.primary,
-            dotSecondaryColor: Theme.of(context).colorScheme.primary,
-          ),
-          likeBuilder: (bool isLiked) {
-            return Icon(
-              Icons.favorite_rounded,
-              color: isLiked ? Theme.of(context).colorScheme.primary : Colors.grey,
-            );
-          },
-          onTap: (isLiked) async {
-            await onLike();
-            return !isLiked;
-          },
-        ),
-      ),
+      trailing: onLike == null
+          ? null
+          : SizedBox(
+              width: 50,
+              child: LikeButton(
+                likeCount: null,
+                isLiked: pokemon.isLiked,
+                circleColor: CircleColor(start: Theme.of(context).colorScheme.primary, end: Theme.of(context).colorScheme.primary),
+                bubblesColor: BubblesColor(
+                  dotPrimaryColor: Theme.of(context).colorScheme.primary,
+                  dotSecondaryColor: Theme.of(context).colorScheme.primary,
+                ),
+                likeBuilder: (bool isLiked) {
+                  return Icon(
+                    Icons.favorite_rounded,
+                    color: isLiked ? Theme.of(context).colorScheme.primary : Colors.grey,
+                  );
+                },
+                onTap: (isLiked) async {
+                  await onLike?.call();
+                  return !isLiked;
+                },
+              ),
+            ),
     );
   }
 }

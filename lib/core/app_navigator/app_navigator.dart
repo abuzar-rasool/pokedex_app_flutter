@@ -3,25 +3,27 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:pokedex_app_flutter/app/cubits/authentication/authentication_cubit.dart';
 import 'package:pokedex_app_flutter/app/entities/authentication_status.dart';
+import 'package:pokedex_app_flutter/app/presentation/screens/favourites/favourites_screen.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/home/home_screen.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/login/login_screen.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/register/register_screen.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/splash/splash_screen.dart';
-import 'package:pokedex_app_flutter/core/app_navigator/fade_page_route.dart';
 
-enum Routes { splash, home, login, register }
+enum Routes { splash, home, login, register, favourites }
 
 class _Paths {
   static const String splash = '/';
   static const String home = '/home';
   static const String login = '/login';
   static const String register = '/register';
+  static const String favourites = '/favourites';
 
   static const Map<Routes, String> _pathMap = {
     Routes.splash: _Paths.splash,
     Routes.home: _Paths.home,
     Routes.login: _Paths.login,
     Routes.register: _Paths.register,
+    Routes.favourites: _Paths.favourites,
   };
 
   static String of(Routes route) => _pathMap[route] ?? splash;
@@ -40,6 +42,8 @@ class AppNavigator {
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case _Paths.register:
         return MaterialPageRoute(builder: (_) => RegisterScreen());
+      case _Paths.favourites:
+        return MaterialPageRoute(builder: (_) => const FavouritesScreen());
       default:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
     }

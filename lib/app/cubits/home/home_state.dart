@@ -31,5 +31,5 @@ class HomeState extends Equatable {
   }
 
   @override
-  List<Object> get props => [status, pokemons, hasReachedMax];
+  List<Object> get props => [status, pokemons.length, hasReachedMax];
 }

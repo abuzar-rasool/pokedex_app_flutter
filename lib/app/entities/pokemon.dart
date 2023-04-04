@@ -8,4 +8,14 @@ class Pokemon extends Equatable {
 
   @override
   List<Object?> get props => [name, isLiked];
+
+  Pokemon copyWith({
+    String? name,
+    bool? isLiked,
+  }) {
+    return Pokemon(
+      name: name ?? this.name,
+      isLiked: isLiked ?? this.isLiked,
+    );
+  }
 }

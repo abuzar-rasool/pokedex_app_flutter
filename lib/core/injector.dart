@@ -5,6 +5,7 @@ import 'package:pokedex_app_flutter/app/cubits/authentication/authentication_cub
 import 'package:pokedex_app_flutter/app/data/repositories/authentication_repository/authentication_repository.dart';
 import 'package:pokedex_app_flutter/app/data/repositories/authentication_repository/firebase_authentication_respository.dart';
 import 'package:pokedex_app_flutter/services/http_service.dart';
+import 'package:pokedex_app_flutter/services/local_storage_service.dart';
 import 'package:pokedex_app_flutter/services/snackbar_service.dart';
 
 class Injector extends StatelessWidget {
@@ -68,6 +69,7 @@ class _GlobalServiceInjector extends StatelessWidget {
       providers: [
         RepositoryProvider<HttpService>(create: (context) => HttpService()),
         RepositoryProvider<SnackBarService>(create: (context) => SnackBarService()),
+        RepositoryProvider(create: (context) => LocalStorageService()),
       ],
       child: child,
     );

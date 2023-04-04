@@ -16,7 +16,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit({required AuthenticationRepository authenticationRepository})
       : _authenticationRepository = authenticationRepository,
         super(const AuthenticationState.unknown()) {
-    Future.delayed(const Duration(seconds: 1), () => _authenticationStatusSubscription = _authenticationRepository.authenticationStatus.listen((status) => _authStatusChanged(status)));
+    Future.delayed(
+        const Duration(seconds: 3), () => _authenticationStatusSubscription = _authenticationRepository.authenticationStatus.listen((status) => _authStatusChanged(status)));
   }
 
   @override

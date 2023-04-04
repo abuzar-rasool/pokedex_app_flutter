@@ -25,7 +25,8 @@ Tools • Dart 2.19.3 • DevTools 2.20.1
 7. Layered archiectecture is used.
 
 ## Application Preview
+
 <div style="display:flex; justify-content:center">
-  <img src="https://example.com/gif-1.gif" width="300" />
-  <img src="https://example.com/gif-2.gif" width="300" />
+  <img src="https://github.com/abuzar-rasool/pokedex_app_flutter/blob/main/gifs/favourite.gif" width="300" />
+  <img src="https://github.com/abuzar-rasool/pokedex_app_flutter/blob/main/gifs/login.gif" width="300" />
 </div>

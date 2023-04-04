@@ -27,7 +27,7 @@ class SnackBarService {
           children: [
             icon,
             const SizedBox(width: 12),
-            Flexible(child: Text(text, style: Theme.of(context).textTheme.bodyText2!.copyWith(color: textColor ?? Theme.of(context).colorScheme.onBackground))),
+            Flexible(child: Text(text, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: textColor ?? Theme.of(context).colorScheme.onBackground))),
           ],
         ),
       );

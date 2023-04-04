@@ -15,7 +15,7 @@ class FavouriteState extends Equatable {
   }) {
     return FavouriteState(
       status: status ?? this.status,
-      favouritePokemons: pokemons ?? this.favouritePokemons,
+      favouritePokemons: pokemons ?? favouritePokemons,
     );
   }
 

@@ -1,7 +1,5 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:pokedex_app_flutter/app/cubits/authentication/authentication_cubit.dart';
 import 'package:pokedex_app_flutter/app/entities/authentication_status.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/favourites/favourites_screen.dart';
 import 'package:pokedex_app_flutter/app/presentation/screens/home/home_screen.dart';

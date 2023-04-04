@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:pokedex_app_flutter/app/data/models/pokedex_response_model.dart';
 import 'package:pokedex_app_flutter/app/data/repositories/pokemon_repository/pokemon_repository.dart';
